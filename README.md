@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Charlie - Voice Assistant
 
 Charlie is a sophisticated voice assistant application built with Python that combines various features including voice recognition, web automation, system control, and integration with multiple services.
