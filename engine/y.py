@@ -13,7 +13,7 @@ app = Flask(__name__)
 limiter = Limiter(app, default_limits=["10 per day"])
 
 # Configure Google Generative AI API
-api_key = os.getenv('AIzaSyCrGKPhY0JzopMwyMc1nXAp3U-Xj5zKvHU')  # Replace with your environment variable for the API key
+api_key = os.getenv('---------------------------')  # Replace with your environment variable for the API key
 genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
