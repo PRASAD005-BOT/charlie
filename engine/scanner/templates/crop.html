@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Image</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            padding: 20px;
+            text-align: center;
+        }
+        .upload-container {
+            margin: 20px auto;
+            border: 2px dashed #008080;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            background-color: #ffffff;
+        }
+        button {
+            background-color: #008080;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005757;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script>
+        let cropper;  // Define cropper variable at the global scope
+
+        function initializeCropper() {
+            const image = document.getElementById('image');
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                autoCropArea: 0.5,
+                movable: true,
+                cropBoxResizable: true,
+                cropBoxMovable: true,
+            });
+
+            document.getElementById('crop').addEventListener('click', () => {
+                const data = cropper.getData();
+                fetch('/crop', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        filename: '{{ filename }}',
+                        coordinates: {
+                            x: Math.round(data.x),
+                            y: Math.round(data.y),
+                            width: Math.round(data.width),
+                            height: Math.round(data.height),
+                        }
+                    }),
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.error) {
+                        alert(data.error);
+                    } else {
+                        // Redirect to result page with extracted text and chatbot response
+                        const extractedText = encodeURIComponent(data.extracted_text);
+                        const chatbotResponse = encodeURIComponent(data.chatbot_response);
+                        window.location.href = `/result?text=${extractedText}&chatbot_response=${chatbotResponse}`;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('image')) {
+                initializeCropper();
+            }
+        });
+    </script>
+</head>
+<body>
+    <h1>Crop Image: {{ filename }}</h1>
+    <div class="upload-container">
+        <img id="image" src="{{ url_for('static', filename='uploads/' + filename) }}" style="max-width: 100%;">
+        <button id="crop" class="button">
+            <i class="fas fa-cut"></i> Crop
+        </button>
+    </div>
+</body>
+</html>

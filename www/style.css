@@ -1,0 +1,361 @@
+/* Background video styling */
+#background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place the video behind other content */
+}
+
+/* Ensure body content appears above the video */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  color: white;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Content styles */
+#content {
+  position: relative;
+  z-index: 1; /* Ensure content is above the video */
+  padding: 20px;
+}
+
+
+/* Settings Button */
+#SettingsBtn {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+#SettingsBtn:hover {
+  background-color: #004d40;
+}
+
+/* Settings Panels Container */
+#settings-panels {
+  position: absolute;
+  top: 70px;
+  right: 20px;
+  width: 90%;
+  max-width: 1000px;
+  display: none;
+  padding: 20px;
+  background-color: #dc7a11;
+  border-radius: 10px;
+  z-index: 4;
+  box-shadow: 0 0 20px rgba(239, 168, 54, 0.8);
+}
+
+/* Navigation Container within Settings Panels */
+#navigation {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  background-color: #111;
+  color: white;
+  border: 1px solid #00796b;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-btn i {
+  font-size: 20px;
+}
+
+.nav-btn:hover {
+  background-color: #004d40;
+  color: #ffffff;
+}
+
+/* Individual Panels */
+.panel {
+  border: 5px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  background-color: #ffab40;
+  display: none;
+}
+
+.panel.active {
+  display: block;
+}
+
+/* Panel Headers */
+.panel h3 {
+  margin-top: 0;
+  color:black;
+  font-weight: 700;
+}
+
+/* Input and Button Styles */
+#settings-panels input[type="text"] {
+
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: #111;
+  color: white;
+}
+
+/* Apply glowing effect to buttons */
+button {
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #004d40;
+}
+
+/* Apply styling to all table cells */
+table td {
+  background-color: #111;
+  color: white;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Apply styling to table headers (optional) */
+table th {
+  background-color: #333;
+  color: white;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Optional: Add styling for the table itself */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+.details-container {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.square {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.square span:nth-child(1),
+.square span:nth-child(2) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#e11b1e00 50%, #cb11113b 40%);
+  box-shadow: 0 0 50px rgba(239, 168, 54, 255), inset 0 0 50px rgba(239, 168, 54, 255);
+  border-radius: 38% 62% 63% 37% / 41% 44% 56% 59%;
+  transition: 0.5s;
+}
+
+.square span:nth-child(1) {
+  animation: animate1 6s linear infinite;
+}
+
+.square span:nth-child(2) {
+  background-image: radial-gradient(#ffab6b00 50%, #a211113b 40%);
+  box-shadow: 0 0 50px rgba(193, 110, 9, 255), inset 0 0 50px rgba(193, 110, 9, 255);
+  animation: animate2 4s linear infinite;
+}
+
+
+/* Input Field Start */
+#TextInput {
+  background-color: #181818a8;
+  border-color: blue;
+  box-shadow: 0 0 20px rgba(239, 168, 54, 255), inset 0 0 0px rgba(239, 168, 54, 255);
+  border-radius: 8px;
+  color: white;
+  padding: 10px 0px 10px 20px;
+  margin: 0.5px 20%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.c {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: cursive;
+  width: 100%;
+}
+
+.glow-on-hover {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 50%;
+  padding: 0px;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 50%;
+}
+
+.glow-on-hover:active {
+  color: #181818a8;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #111;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+}
+
+@keyframes glowing {
+  0% {
+      background-position: 0 0;
+  }
+  50% {
+      background-position: 400% 0;
+  }
+  100% {
+      background-position: 0 0;
+  }
+}
+
+/* Input Field End */
+
+.chat-canvas {
+  background-color: #191919;
+}
+
+.receiver_message {
+  padding: 8px;
+  border: 2px solid #ffab40;
+  border-radius: 0px 15px 15px 20px;
+  width: auto;
+  color: white;
+  background-color: #00796b;
+  margin: 10px 0;
+}
+
+.sender_message {
+  padding: 8px;
+  border: 2px solid #00796b;
+  border-radius: 15px 15px 0px 20px;
+  width: auto;
+  color: white;
+  background-color: #ffab40;
+  margin: 10px 0;
+}
+
+.width-size {
+  max-width: 80%;
+  width: auto;
+}
+
+.delete-phone-number,
+.delete-system-path,
+.delete-website,
+.delete-chatbot-key {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.delete-phone-number:hover,
+.delete-system-path:hover,
+.delete-website:hover,
+.delete-chatbot-key:hover {
+  background-color: darkred;
+}
+
+.back-button {
+  position: fixed;
+  top: 10px;
+  left: 20px;
+  z-index: 10;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3;
+}

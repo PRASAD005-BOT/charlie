@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            height: 80vh; /* Adjust height as needed */
+        }
+        .left, .right {
+            width: 50%; /* 50% width for both sections */
+            padding: 10px;
+            box-sizing: border-box;
+            overflow-y: auto; /* Add scroll if content overflows */
+        }
+        .left {
+            border-right: 1px solid #ccc; /* Divider */
+        }
+        h2 {
+            text-align: center;
+        }
+        .horizontal-data {
+            display: flex;
+            flex-wrap: wrap; /* Allows content to wrap if necessary */
+            gap: 10px; /* Spacing between items */
+        }
+        .data-item {
+            flex: 1; /* Allows items to take equal space */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/data')
+                .then(response => response.json())
+                .then(data => {
+                    const resultDiv = document.getElementById('extracted-data');
+                    const chatbotDiv = document.getElementById('chatbot-response');
+
+                    // Display the content from data.txt
+                    const [extractedText, chatbotResponse] = data.data.split('Chatbot Response:');
+                    const extractedItems = extractedText.trim().split('\n'); // Split by lines for horizontal display
+                    resultDiv.innerHTML = extractedItems.map(item => `<div class="data-item">${item}</div>`).join(''); // Create horizontal format
+                    chatbotDiv.textContent = chatbotResponse ? chatbotResponse.trim() : 'No response from chatbot'; // Chatbot response
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <h2>Extracted Data</h2>
+            <div id="extracted-data">Loading...</div>
+        </div>
+        <div class="right">
+            <h2>Chatbot Response</h2>
+            <pre id="chatbot-response">Loading...</pre>
+        </div>
+    </div>
+</body>
+</html>
