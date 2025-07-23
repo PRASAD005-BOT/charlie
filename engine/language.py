@@ -9,7 +9,7 @@ import time
 import google.generativeai as genai
 
 # # Configure the API key for Gemini AI
-# api_key = "AIzaSyCrGKPhY0JzopMwyMc1nXAp3U-Xj5zKvHU"
+# api_key = "AIzaSyCrGKPhY"
 # genai.configure(api_key=api_key)
 model = genai.GenerativeModel("gemini-1.5-flash")
 
